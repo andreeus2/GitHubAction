@@ -7,7 +7,7 @@ async function run(){
 
     const { context = {} } = github;
     const { pull_request } = context.payload;
-
+    try{
     await octokit.rest.issues.createComment({
         ...context.repo,
         issue_number: pull_request.number,
@@ -15,6 +15,9 @@ async function run(){
     });
 
     console.log('Hello World');
+    }catch(error){
+        console.log(error);
+    }
 }
 
 run();
